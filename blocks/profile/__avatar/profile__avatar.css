@@ -1,3 +1,5 @@
 .profile__avatar {
     border-radius: 127px;
+    max-width: 127px;
+    max-height: 127px;
 }

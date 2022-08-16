@@ -7,9 +7,9 @@ closeButton.addEventListener('click', function() {
 let editButton = document.querySelector('.profile-info__edit-button');
 let formName = document.querySelector('.profile-info__name'); 
 let formJob = document.querySelector('.profile-info__job');
-let nameInput = document.querySelector('.popup__input_name');
-let jobInput = document.querySelector('.popup__input_job'); 
-let submitButton = document.querySelector('.popup__submit-button');
+let nameInput = document.querySelector('.popup__input_type_name');
+let jobInput = document.querySelector('.popup__input_type_job');
+let formProfileInfo = document.querySelector ('.popup__input')
 
 editButton.addEventListener('click', function() {
     editForm.classList.add('popup_opened');
@@ -24,13 +24,12 @@ let formSubmitHandler = function (evt) {
     editForm.classList.remove('popup_opened');
 }
 
-submitButton.addEventListener('click', formSubmitHandler);
 
 
-submitButton.addEventListener('submit', formSubmitHandler);
+formProfileInfo.addEventListener('submit', formSubmitHandler);
 
-let likeButton = document.querySelector('.elements__like-button');
-likeButton.addEventListener('click', function() {
-    likeButton.classList.toggle('elements__like-button_active')
-})
+// let likeButton = document.querySelector('.elements__like-button');
+// likeButton.addEventListener('click', function() {
+//     likeButton.classList.toggle('elements__like-button_active')
+// })
 

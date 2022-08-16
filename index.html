@@ -11,7 +11,6 @@
     
     <header class="header">
         <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
-        <hr class="header__line">
     </header>
 
     <main>
@@ -19,71 +18,72 @@
             <img src="./images/avatar.jpg" alt="Аватарка" class="profile__avatar">
             <div class="profile-info">
                 <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-                <h2 class="profile-info__job">Исследователь океана</h2>
-                <button class="profile-info__edit-button"></button>
+                <p class="profile-info__job">Исследователь океана</p>
+                <button type="button" class="profile-info__edit-button"></button>
             </div>
-            
-            <button class="profile__add-button"></button>
+            <button aria-label="Кнопка 'Добавить'" class="profile__add-button" type="button"></button>
         </section>
 
-        <section class="elements">
-            <div class="elements__element">
+        <section class="elements" aria-label="Фото альбом">
+            <article class="elements__element">
                 <img src="./images/batiskaf-kusto.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">Батискаф Кусто</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element">
+            </article>
+            <article class="elements__element">
                 <img src="./images/komanda-kusto.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">Кусто с командой</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element">
+            </article>
+            <article class="elements__element">
                 <img src="./images/akvalang2.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">Изобретение Кусто и Ганьян</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element">
+            </article>
+            <article class="elements__element">
                 <img src="./images/kusto.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">На дне морском</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element">
+            </article>
+            <article class="elements__element">
                 <img src="./images/underwater-house.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">Подводный дом</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
-            <div class="elements__element">
+            </article>
+            <article class="elements__element">
                 <img src="./images/uboat.jpg" alt="Картинка альбома" class="elements__image">
                 <div class="elements__description">
                     <h2 class="elements__title">Подлодка</h2>
-                    <div class="elements__like-button"></div>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
 
-    <footer>
-        <p class="footer">&copy; 2020 Mesto Russia</p>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
 
     <section class="popup">
-        <form class="popup__container">
-            <img class="popup__close-button" src="./images/close-button.svg" alt="Кнопка 'закрыть'">
+        <div class="popup__container">
+            <button  aria-label="Кнопка 'Закрыть'" type="button" class="popup__close-button"></button>
             <h2 class="popup__title">Редактировать</h2>
-            <input class="popup__input popup__input_name" type="text" placeholder="Имя" required>
-            <input class="popup__input popup__input_job" type="text" placeholder="О себе" required>
-            <button class="popup__submit-button" type="submit">Сохранить</button>
-        </form>
+            <form class="popup__input" name="profileInfo">
+                <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя" required>
+                <input class="popup__input popup__input_type_job" name="job" type="text" placeholder="О себе" required>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+        </div>
     </section>
     <script src="./blocks/popup/popup.js"></script>
 </body>
