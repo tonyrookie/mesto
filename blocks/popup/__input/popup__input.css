@@ -6,6 +6,16 @@
     flex-direction: column;
     gap: 30px;
     padding: 0;
-    margin: 0;
+    margin: 16px 0 0;
     border: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 600px) {
+    .popup__input {
+        margin: 26px 0 0;
+        gap: 24px;
+    }
 }
