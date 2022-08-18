@@ -18,7 +18,7 @@
             <img src="./images/avatar.jpg" alt="Аватарка" class="profile__avatar">
             <div class="profile-info">
                 <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile-info__edit-button"></button>
+                <button aria-label="Кнопка 'Редактировать'" class="profile-info__edit-button"  type="button"></button>
                 <p class="profile-info__job">Исследователь океана</p>
             </div>
             <button aria-label="Кнопка 'Добавить'" class="profile__add-button" type="button"></button>
@@ -78,7 +78,7 @@
         <div class="popup__container">
             <button  aria-label="Кнопка 'Закрыть'" type="button" class="popup__close-button"></button>
             <h2 class="popup__title">Редактировать</h2>
-            <form class="popup__input" name="profileInfo">
+            <form class="popup__form" name="profileInfo">
                 <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя" required>
                 <input class="popup__input popup__input_type_job" name="job" type="text" placeholder="О себе" required>
                 <button class="popup__submit-button" type="submit">Сохранить</button>

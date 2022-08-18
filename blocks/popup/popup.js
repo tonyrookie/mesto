@@ -11,7 +11,7 @@ let formName = document.querySelector('.profile-info__name');
 let formJob = document.querySelector('.profile-info__job');
 let nameInput = document.querySelector('.popup__input_type_name');
 let jobInput = document.querySelector('.popup__input_type_job');
-let formProfileInfo = document.querySelector ('.popup__input')
+let formProfileInfo = document.querySelector ('.popup__form')
 let popupOpen = function() {
     editForm.classList.add('popup_opened');
     nameInput.value = formName.textContent;
