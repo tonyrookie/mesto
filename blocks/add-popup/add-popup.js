@@ -52,12 +52,15 @@ function showImage(evt) {
     document.querySelector('.image-popup__image').src = evt.target.src;
     document.querySelector('.image-popup__name').textContent = evt.target.closest('.elements__element').querySelector('.elements__title').textContent;
     imagePopup.classList.add('image-popup_opened');
-    function closeImage() {imagePopup.classList.remove('image-popup_opened')}
 }
-function delElements(e) {
-    const delElement = e.target.closest('.elements__element');
+
+function closeImage() {imagePopup.classList.remove('image-popup_opened')}
+
+function delElements(evt) {
+    const delElement = evt.target.closest('.elements__element');
     delElement.remove();
 }
+
 function likeElement(evt) {
     evt.target.classList.toggle('elements__like-button_active');
 }
@@ -85,6 +88,28 @@ function addFormSubmitHandler(e) {
 
 addFormContainer.addEventListener('submit', addFormSubmitHandler);
 
-document.addEventListener('keypress', function (e) {
-    if(e.keyCode === 27) document.getElementsByClassName ('popup').hidden= 1;
-  })
+function closeEsc(evt) {
+    if (evt.keyCode == 27) {
+        closeAddPopup();
+        closeImage();
+        closePopup()
+    }
+}
+
+function closeAnyClick(evt) {
+        const anyClick = evt.target
+        if (!anyClick.closest('.image-popup__image') 
+        && !anyClick.closest('.elements__element') 
+        && !anyClick.closest('.popup__container') 
+        && !anyClick.closest('.profile-info__edit-button')
+        && !anyClick.closest('.profile__add-button')
+        && !anyClick.closest('.add-popup__container')) { 
+            closeAddPopup();
+            closeImage();
+            closePopup()
+        }
+}
+
+document.addEventListener('keydown', closeEsc);
+
+document.addEventListener('click', closeAnyClick);
