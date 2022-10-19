@@ -43,11 +43,22 @@ const addFormContainer = document.querySelector('.add-popup__form');
 const elementName = document.querySelector('.add-popup__input_type_name');
 const elementLink = document.querySelector('.add-popup__input_type_link');
 const templateElement = document.querySelector('.template');
-function elementDel(e) {
+const imagePopup = document.querySelector('.image-popup');
+
+
+function showImage(evt) {
+    evt.preventDefault();
+    imagePopup.querySelector('.image-popup__close-button').addEventListener('click', closeImage);
+    document.querySelector('.image-popup__image').src = evt.target.src;
+    document.querySelector('.image-popup__name').textContent = evt.target.closest('.elements__element').querySelector('.elements__title').textContent;
+    imagePopup.classList.add('image-popup_opened');
+    function closeImage() {imagePopup.classList.remove('image-popup_opened')}
+}
+function delElements(e) {
     const delElement = e.target.closest('.elements__element');
     delElement.remove();
 }
-function elementLike(evt) {
+function likeElement(evt) {
     evt.target.classList.toggle('elements__like-button_active');
 }
 
@@ -55,10 +66,11 @@ function addElement(element) {
     const newElement = templateElement.content.cloneNode(true);
     newElement.querySelector('.elements__image').src = element.link;
     newElement.querySelector('.elements__title').textContent = element.name;
-    newElement.querySelector('.elements__del-button').addEventListener('click', elementDel);
+    newElement.querySelector('.elements__del-button').addEventListener('click', delElements);
+    newElement.querySelector('.elements__like-button').addEventListener('click', likeElement);
+    newElement.querySelector('.elements__image').addEventListener('click', showImage);
     elementsList.prepend(newElement);
-    const likeButton = document.querySelector('.elements__like-button');
-    likeButton.addEventListener('click', elementLike);
+    
 }
 
 elements.forEach(addElement);
@@ -67,11 +79,12 @@ function addFormSubmitHandler(e) {
     e.preventDefault();
     const element = {name: elementName.value, link: elementLink.value};
     addElement(element);
-    //e.target.reset();
+    e.target.reset();
     closeAddPopup();
 }
 
 addFormContainer.addEventListener('submit', addFormSubmitHandler);
 
-
-
+document.addEventListener('keypress', function (e) {
+    if(e.keyCode === 27) document.getElementsByClassName ('popup').hidden= 1;
+  })

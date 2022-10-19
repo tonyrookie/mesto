@@ -28,10 +28,3 @@ function formSubmitHandler(evt) {
 };
 
 formProfileInfo.addEventListener('submit', formSubmitHandler);
-
-
-
-// const likeButton = document.querySelector('.elements__like-button');
-// likeButton.addEventListener('click', function() {
-//     likeButton.classList.toggle('elements__like-button_active')
-// })
