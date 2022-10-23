@@ -16,15 +16,15 @@
     <main>
         <section class="profile">
             <img src="./images/avatar.jpg" alt="Аватарка" class="profile__avatar">
-            <div class="profile-info">
-                <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-                <button aria-label="Кнопка 'Редактировать'" class="profile-info__edit-button"  type="button"></button>
-                <p class="profile-info__job">Исследователь океана</p>
+            <div class="profile__info">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button aria-label="Кнопка 'Редактировать'" class="profile__edit-button"  type="button"></button>
+                <p class="profile__job">Исследователь океана</p>
             </div>
-            <button aria-label="Кнопка 'Добавить'" class="profile__add-button" type="button"></button>
+            <button aria-label="Кнопка 'Добавить'" class="profile__add-card-button" type="button"></button>
         </section>
 
-        <section class="elements" aria-label="Фото альбом">
+        <section class="cards" aria-label="Фото альбом">
         </section>
     </main>
 
@@ -32,52 +32,49 @@
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    
-        <section class="popup">
+        <section class="popup popup_type_edit-profile">
             <div class="popup__container">
                 <button  aria-label="Кнопка 'Закрыть'" type="button" class="popup__close-button"></button>
                 <h2 class="popup__title">Редактировать</h2>
-                <form class="popup__form" name="profileInfo">
-                    <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя" required minlength="4">
-                    <input class="popup__input popup__input_type_job" name="job" type="text"  placeholder="О себе" required minlength="4">
+                <form class="popup__form popup__form_type_edit-profile" name="profileInfo">
+                    <input class="popup__input popup__input_type_profile-name" name="name" type="text" placeholder="Имя" required minlength="4">
+                    <input class="popup__input popup__input_type_profile-job" name="job" type="text"  placeholder="О себе" required minlength="4">
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
 
-        <section class="add-popup">
-            <div class="add-popup__container">
-                <button  aria-label="Кнопка 'Закрыть'" type="button" class="add-popup__close-button"></button>
-                <h2 class="add-popup__title">Новое место</h2>
-                <form class="add-popup__form" name="addInfo">
-                    <input class="add-popup__input add-popup__input_type_name" name="name" type="text" placeholder="Название" required minlength="4">
-                    <input class="add-popup__input add-popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required minlength="4">
-                    <button class="add-popup__submit-button" type="submit">Сохранить</button>
+        <section class="popup popup_type_add-card">
+            <div class="popup__container">
+                <button  aria-label="Кнопка 'Закрыть'" type="button" class="popup__close-button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__form popup__form_type_add-card" name="addCard">
+                    <input class="popup__input popup__input_type_title" name="title" type="text" placeholder="Название" required minlength="4">
+                    <input class="popup__input popup__input_type_link" name="link" type="url" placeholder="Ссылка на картинку" required minlength="4">
+                    <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
 
+        <section class="popup popup_type_show-image">
+            <div class="popup__container popup__container_type_show-image">
+                <button class="popup__close-button" aria-label="Кнопка 'Закрыть'" type="button"></button>
+                <img src="#" class="popup__image"  alt="#">
+                <h2 class="popup__image-title">#</h2>
+            </div>
+        </section>
+
         <template class="template">
-            <article class="elements__element">
-                <img src="#" alt="Картинка альбома" class="elements__image">
-                <img src="./images/Trash.svg" class="elements__del-button" >
-                <div class="elements__description">
-                    <h2 class="elements__title">#</h2>
-                    <button aria-label="Кнопка 'Лайкнуть'" class="elements__like-button" type="button"></button>
+            <article class="cards__container">
+                <img src="#" alt="#" class="cards__image">
+                <img src="./images/trash.svg" class="cards__del-button" alt="Кнопка 'Удалить'">
+                <div class="cards__description">
+                    <h2 class="cards__title">#</h2>
+                    <button aria-label="Кнопка 'Лайкнуть'" class="cards__like-button" type="button"></button>
                 </div>
             </article>
         </template>
 
-        <section class="image-popup">
-            <div class="image-popup__container">
-                <button class="image-popup__close-button" aria-label="Кнопка 'Закрыть'" type="button"></button>
-                <img src="#" class="image-popup__image"  alt="Картинка альбома">
-                <h2 class="image-popup__name">#</h2>
-            </div>
-        </section>
-
-    <script src="./blocks/popup/popup.js"></script>
-    <script src="./blocks/add-popup/add-popup.js"></script>
-    <script src="blocks/elements/elements.js" ></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
