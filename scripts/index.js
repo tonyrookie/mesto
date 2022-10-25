@@ -13,6 +13,9 @@ const profileAddCardButton = document.querySelector('.profile__add-card-button')
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const cardTitle = document.querySelector('.popup__input_type_title');
 const cardImageLink = document.querySelector('.popup__input_type_link');
+const popupShowImage = document.querySelector('.popup_type_show-image');
+const popupImage = document.querySelector('.popup__image');
+const popupImageTitle = document.querySelector('.popup__image-title');
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -68,9 +71,6 @@ function createCard(card) {
     const likeButton = newCard.querySelector('.cards__like-button');
     const cardTitle = newCard.querySelector('.cards__title');
     const cardDelButton = newCard.querySelector('.cards__del-button');
-    const popupShowImage = document.querySelector('.popup_type_show-image');
-    const popupImage = document.querySelector('.popup__image');
-    const popupImageTitle = document.querySelector('.popup__image-title');
     cardImage.src = card.link;
     cardTitle.textContent = card.name;
     cardImage.alt = card.name;
