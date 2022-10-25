@@ -3,9 +3,16 @@ const profileJob = document.querySelector('.popup__input_type_profile-job');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupEditProfileFormName = document.querySelector('.profile__name');
 const popupEditProfileFormJob = document.querySelector('.profile__job');
-const popupForms = document.querySelectorAll('.popup__form');
 const profileInfoEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formCreateCard = document.forms.createCard;
+const formEditProfileInfo = document.forms.profileInfo;
+const cardList = document.querySelector('.cards');
+const templateCard = document.querySelector('.template');
+const profileAddCardButton = document.querySelector('.profile__add-card-button');
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const cardTitle = document.querySelector('.popup__input_type_title');
+const cardImageLink = document.querySelector('.popup__input_type_link');
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -28,8 +35,6 @@ profileInfoEditButton.addEventListener('click', () => {
 
 popupCloseButtons.forEach ((popupCloseButton) => popupCloseButton.addEventListener('click', hideClosestPopup));
 
-const cardList = document.querySelector('.cards');
-const templateCard = document.querySelector('.template');
 const cards = [
     {
         name: 'Батискаф Кусто',
@@ -87,27 +92,19 @@ function addCardToHtml(card) {
 
 cards.forEach(addCardToHtml);
 
-const profileAddCardButton = document.querySelector('.profile__add-card-button');
-const popupAddCard = document.querySelector('.popup_type_add-card');
-const cardTitle = document.querySelector('.popup__input_type_title');
-const cardImageLink = document.querySelector('.popup__input_type_link');
-
 profileAddCardButton.addEventListener('click', () => {openPopup(popupAddCard)});
 
-function submitForm(popupForm) {
-    popupForm.preventDefault();
-    const popupTypeEditProfile = popupForm.target.closest('.popup__form_type_edit-profile');
-    const popupTypeCreateCard = popupForm.target.closest('.popup__form_type_add-card');
-    if (popupTypeEditProfile) {
+formEditProfileInfo.addEventListener('submit', (formEditProfileInfo) => {
+    formEditProfileInfo.preventDefault();
         popupEditProfileFormName.textContent = profileName.value;
         popupEditProfileFormJob.textContent = profileJob.value;
-    }
-    if (popupTypeCreateCard) {
+        hideClosestPopup(formEditProfileInfo);
+})
+
+formCreateCard.addEventListener('submit', (formCreateCard) => {
+    formCreateCard.preventDefault();
         const card = {name: cardTitle.value, link: cardImageLink.value};
         addCardToHtml(card);
-        popupForm.target.reset();
-    }
-    hideClosestPopup(popupForm);
-};
-
-popupForms.forEach ((popupForm) => popupForm.addEventListener('submit', submitForm));
+        formCreateCard.target.reset();
+        hideClosestPopup(formCreateCard);
+})
