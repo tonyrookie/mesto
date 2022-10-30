@@ -19,10 +19,14 @@ const popupImageTitle = document.querySelector('.popup__image-title');
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEscPress);
+    document.addEventListener('click', closePopupOverlayClick);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEscPress);
+    document.removeEventListener('click', closePopupOverlayClick);
 }
 
 function hideClosestPopup(evt) {
@@ -86,7 +90,7 @@ function createCard(card) {
 }
 
 function addCardToHtml(card) {
-    const addCard = createCard(card)
+    const addCard = createCard(card);
     cardList.prepend(addCard);
 }
 
@@ -108,3 +112,17 @@ formCreateCard.addEventListener('submit', (formCreateCard) => {
         formCreateCard.target.reset();
         hideClosestPopup(formCreateCard);
 })
+
+function closePopupEscPress(evt) {
+    if (evt.key === 'Escape') {
+        const popup = document.querySelector('.popup_opened');
+        closePopup(popup);
+    }
+}
+
+function closePopupOverlayClick(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if(evt.target == popup) {
+        closePopup(popup)
+    }
+}
