@@ -74,5 +74,5 @@ function toggleSubmitButtonSelector(inputSelectorList, submitButtonSelector) {
     } else {
     submitButtonSelector.classList.remove('popup__button_disabled');
     submitButtonSelector.removeAttribute("disabled", "");
-    } 
+    }
 }
