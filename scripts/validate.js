@@ -9,55 +9,39 @@
 //    inputErrorClass: 'popup__input_type_error',
 //    errorClass: 'popup__error_visible'
 //    });
-function setSubmitButtonState(isActive) {
-    if (isActive) {
-        submitButtonSelector.classList.add('popup__button_disabled');
-        submitButtonSelector.classList.remove('popup__button');
-    } else {
-        submitButtonSelector.classList.remove('popup__button_disabled');
-        submitButtonSelector.classList.add('popup__button');
-    } 
-};
+
 
 function showInputError(formSelector, inputSelector) {
-    const inputErrorClasses = formSelector.querySelectorAll('.popup__eror');
+    const inputErrorClass = formSelector.querySelector(`#${inputSelector.id}-error`);
     inputSelector.classList.add('popup__input_type_error');
-    inputErrorClasses.forEach((inputErrorClass) => {
-        inputErrorClass.classList.add('popup__error_visible')
-        inputErrorClass.textContent = inputSelector.validationMessage;
-    });
+    inputErrorClass.classList.add('popup__error_visible')
+    inputErrorClass.textContent = inputSelector.validationMessage;
 };
 
 function hideInputError(formSelector, inputSelector) {
-    const inputErrorClasses = formSelector.querySelectorAll('.popup__eror');
+    const inputErrorClass = formSelector.querySelector(`#${inputSelector.id}-error`);
     inputSelector.classList.remove('popup__input_type_error');
-    inputErrorClasses.forEach((inputErrorClass) => {
-        inputErrorClass.classList.remove('popup__error_visible')
-        inputErrorClass.textContent = '';
-    });
+    inputErrorClass.classList.remove('popup__error_visible')
+    inputErrorClass.textContent = '';
 };
 
 function checkInputValidity (formSelector, inputSelector) {
-    const submitButtonSelector = formSelector.querySelector('.popup__button');
     if (!inputSelector.validity.valid) {
         showInputError(formSelector, inputSelector);
     } else {
         hideInputError(formSelector, inputSelector);
     }
-    if (!inputSelector.validity.valid) {
-        submitButtonSelector.classList.add('popup__button_disabled');
-        submitButtonSelector.setAttribute("disabled", "");
-    } else { 
-        submitButtonSelector.classList.remove('popup__button_disabled');
-        submitButtonSelector.removeAttribute("disabled", "");
-    }
 };
 
+
 function setEventListeners(formSelector) {
-    const inputList = Array.from(formSelector.querySelectorAll('.popup__input'));
-    inputList.forEach((inputSelector) => {
+    const inputSelectorList = Array.from(formSelector.querySelectorAll('.popup__input'));
+    const submitButtonSelector = formSelector.querySelector('.popup__button');
+    toggleSubmitButtonSelector(inputSelectorList, submitButtonSelector);
+    inputSelectorList.forEach((inputSelector) => {
         inputSelector.addEventListener('input', function () {
         checkInputValidity(formSelector, inputSelector);
+        toggleSubmitButtonSelector(inputSelectorList, submitButtonSelector);
         });
     });
 };
@@ -65,12 +49,30 @@ function setEventListeners(formSelector) {
 function enableValidation() {
     const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formSelector) => {
-    formSelector.addEventListener('submit', (evt) => {
+        formSelector.addEventListener('submit', (evt) => {
         evt.preventDefault();
-    });
-    setEventListeners(formSelector);
+        });
+        const fieldsetList = Array.from(formSelector.querySelectorAll('.popup__form-set'));
+        fieldsetList.forEach((fieldSet) => {
+        setEventListeners(fieldSet);
+        }); 
     });
 };
 
 enableValidation();
 
+function hasInvalidInput(inputSelectorList) {
+    return inputSelectorList.some((inputSelector) => {
+    return !inputSelector.validity.valid;
+    }); 
+}
+
+function toggleSubmitButtonSelector(inputSelectorList, submitButtonSelector) {
+    if (hasInvalidInput(inputSelectorList)) {
+    submitButtonSelector.classList.add('popup__button_disabled');
+    submitButtonSelector.setAttribute("disabled", "");
+    } else {
+    submitButtonSelector.classList.remove('popup__button_disabled');
+    submitButtonSelector.removeAttribute("disabled", "");
+    } 
+}

@@ -1,6 +1,5 @@
 const profileName = document.querySelector('.popup__input_type_profile-name');
 const profileJob = document.querySelector('.popup__input_type_profile-job');
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupEditProfileFormName = document.querySelector('.profile__name');
 const popupEditProfileFormJob = document.querySelector('.profile__job');
 const profileInfoEditButton = document.querySelector('.profile__edit-button');
@@ -16,17 +15,18 @@ const cardImageLink = document.querySelector('.popup__input_type_link');
 const popupShowImage = document.querySelector('.popup_type_show-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageTitle = document.querySelector('.popup__image-title');
+const popups = document.querySelectorAll('.popup');
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEscPress);
-    document.addEventListener('click', closePopupOverlayClick);
+    popup.querySelector('.popup__button').classList.add('popup__button_disabled');
+    popup.querySelector('.popup__button').setAttribute("disabled", "");
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEscPress);
-    document.removeEventListener('click', closePopupOverlayClick);
 }
 
 function hideClosestPopup(evt) {
@@ -39,8 +39,6 @@ profileInfoEditButton.addEventListener('click', () => {
     profileName.value = popupEditProfileFormName.textContent;
     profileJob.value = popupEditProfileFormJob.textContent;
 });
-
-popupCloseButtons.forEach ((popupCloseButton) => popupCloseButton.addEventListener('click', hideClosestPopup));
 
 const cards = [
     {
@@ -120,9 +118,14 @@ function closePopupEscPress(evt) {
     }
 }
 
-function closePopupOverlayClick(evt) {
-    const popup = document.querySelector('.popup_opened');
-    if(evt.target == popup) {
-        closePopup(popup)
-    }
-}
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup);
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup);
+        }
+        
+    })
+})
