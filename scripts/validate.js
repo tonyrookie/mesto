@@ -1,16 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-//enableValidation({
-//    formSelector: '.popup__form',
-//    inputSelector: '.popup__input',
-//    submitButtonSelector: '.popup__button',
-//    inactiveButtonClass: 'popup__button_disabled',
-//    inputErrorClass: 'popup__input_type_error',
-//    errorClass: 'popup__error_visible'
-//    });
-
-
 function showInputError(formSelector, inputSelector) {
     const inputErrorClass = formSelector.querySelector(`#${inputSelector.id}-error`);
     inputSelector.classList.add('popup__input_type_error');
@@ -32,7 +19,6 @@ function checkInputValidity (formSelector, inputSelector) {
         hideInputError(formSelector, inputSelector);
     }
 };
-
 
 function setEventListeners(formSelector) {
     const inputSelectorList = Array.from(formSelector.querySelectorAll('.popup__input'));
