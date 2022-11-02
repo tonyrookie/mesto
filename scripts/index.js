@@ -20,8 +20,6 @@ const popups = document.querySelectorAll('.popup');
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEscPress);
-    popup.querySelector('.popup__button').classList.add('popup__button_disabled');
-    popup.querySelector('.popup__button').setAttribute("disabled", "");
 }
 
 function closePopup(popup) {
@@ -38,6 +36,8 @@ profileInfoEditButton.addEventListener('click', () => {
     openPopup(popupEditProfile);
     profileName.value = popupEditProfileFormName.textContent;
     profileJob.value = popupEditProfileFormJob.textContent;
+    popupEditProfile.querySelector('.popup__button').classList.add('popup__button_disabled');
+    popupEditProfile.querySelector('.popup__button').setAttribute("disabled", "");
 });
 
 const cards = [
@@ -94,7 +94,11 @@ function addCardToHtml(card) {
 
 cards.forEach(addCardToHtml);
 
-profileAddCardButton.addEventListener('click', () => {openPopup(popupAddCard)});
+profileAddCardButton.addEventListener('click', () => {
+    openPopup(popupAddCard);
+    popupAddCard.querySelector('.popup__button').classList.add('popup__button_disabled');
+    popupAddCard.querySelector('.popup__button').setAttribute("disabled", "");
+});
 
 formEditProfileInfo.addEventListener('submit', (formEditProfileInfo) => {
     formEditProfileInfo.preventDefault();
