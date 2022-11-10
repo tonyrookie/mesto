@@ -12,7 +12,7 @@
     box-sizing: border-box;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity .2s linear;
+    transition: visibility 0s, opacity .3s linear;
 }
 
 @media screen and (max-width: 600px) {
