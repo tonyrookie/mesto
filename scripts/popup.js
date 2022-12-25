@@ -1,18 +1,13 @@
-import { popups } from './const.js';
+import { popups } from './elements.js';
 
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEscPress);
 }
 
-function closePopup(popup) {
+export function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEscPress);
-}
-
-export function hideClosestPopup(evt) {
-    const popup = evt.target.closest(".popup");
-    if (popup) {closePopup(popup)};
 }
 
 function closePopupEscPress(evt) {
@@ -22,20 +17,10 @@ function closePopupEscPress(evt) {
     }
 }
 
-export function disablePopupSubmitButton(popup) {
-    const button = popup.querySelector('.popup__button');
-    button.classList.add('popup__button_disabled');
-    button.setAttribute("disabled", "");
-}
-
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
+        if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
             closePopup(popup);
         }
-        if (evt.target.classList.contains('popup__close-button')) {
-            closePopup(popup);
-        }
-        
     })
 })

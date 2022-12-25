@@ -1,24 +1,18 @@
-import { openPopup } from './popup.js';
-import { popupTypeShowImage, cardList, popupImage, popupImageTitle } from './const.js';
 export default class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
     this._title = data.title;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
         const cardElement = document
-        .querySelector(this._templateSelector)
-        .content
-        .querySelector('.cards__container')
-        .cloneNode(true);
+            .querySelector(this._templateSelector)
+            .content
+            .querySelector('.cards__container')
+            .cloneNode(true);
         return cardElement;
-    }
-
-    addCardToHtml() {
-        const addCard = this._createCard();
-        cardList.prepend(addCard);
     }
 
     _createCard() {
@@ -39,19 +33,12 @@ export default class Card {
     }
 
     _delCard() {
-        this._cardsDelButton.closest('.cards__container').remove()
-    }
-
-    _showImage() {
-        popupImage.src = this._cardsImage.src;
-        popupImage.alt = this._cardsTitle.textContent;
-        popupImageTitle.textContent = this._cardsTitle.textContent;
-        openPopup(popupTypeShowImage)
+        this._element.closest('.cards__container').remove()
     }
 
     _setEventListeners() {
         this._cardsImage.addEventListener('click', () => {
-            this._showImage()
+            this._handleCardClick(this._title, this._link)
         });
         this._cardsLikeButton.addEventListener('click', () => {
             this._likeCard()
