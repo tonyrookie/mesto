@@ -24,7 +24,6 @@ export const cards = [
         link: './images/uboat.jpg'
     }
 ];
-export const forms = document.querySelectorAll('.popup__form')
 export const validationSettings = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',

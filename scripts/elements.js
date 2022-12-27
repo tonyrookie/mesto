@@ -15,3 +15,4 @@ export const popupTypeShowImage = document.querySelector('.popup_type_show-image
 export const popupImage = document.querySelector('.popup__image');
 export const popupImageTitle = document.querySelector('.popup__image-title');
 export const popups = document.querySelectorAll('.popup');
+export const forms = document.querySelectorAll('.popup__form');

@@ -15,7 +15,7 @@ export default class Card {
         return cardElement;
     }
 
-    _createCard() {
+    getView() {
         this._element = this._getTemplate();
         this._cardsImage = this._element.querySelector('.cards__image');
         this._cardsTitle = this._element.querySelector('.cards__title');
@@ -33,7 +33,7 @@ export default class Card {
     }
 
     _delCard() {
-        this._element.closest('.cards__container').remove()
+        this._element.remove()
     }
 
     _setEventListeners() {
@@ -47,5 +47,4 @@ export default class Card {
             this._delCard()
         });
     }
-
 }

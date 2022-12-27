@@ -1,15 +1,24 @@
-import { cardTitle, cardImageLink , formCreateCard, profileAddCardButton, popupAddCard, 
+import {
+    cardTitle, cardImageLink , formCreateCard, profileAddCardButton, popupAddCard, 
     formEditProfileInfo, profileName, profileJob,  
-    popupEditProfileFormName, popupEditProfileFormJob, profileInfoEditButton, popupEditProfile, cardList, popupImageTitle, popupImage, popupTypeShowImage } from './elements.js';
-import { cards, validationSettings, forms } from './const.js'
+    popupEditProfileFormName, popupEditProfileFormJob, profileInfoEditButton, popupEditProfile, cardList, popupImageTitle, popupImage, popupTypeShowImage, forms 
+} from './elements.js';
+import { cards, validationSettings } from './const.js'
 import { openPopup, closePopup } from './popup.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-cards.forEach((item) => {
-    const card = new Card(item, '.template', handleCardClick);
-    const createdCard = card._createCard();
-    addCardToHtml(createdCard);
+function createCard(data) {
+    const card = new Card(data, '.template', handleCardClick);
+    return card.getView();
+};
+
+function renderCard(data, wrap) {
+    wrap.prepend(createCard(data));
+};
+
+cards.forEach((data) => {
+    renderCard(data, cardList)
 });
 
 function handleCardClick(title, link) {
@@ -17,31 +26,22 @@ function handleCardClick(title, link) {
     popupImage.alt = title;
     popupImageTitle.textContent = title;
     openPopup(popupTypeShowImage);
-} 
+};
 
-function addCardToHtml(card) {
-    cardList.prepend(card);
-}
+const validators = {}
 
 forms.forEach((form) => {
     const formValidator = new FormValidator(validationSettings, form);
     formValidator.enableValidation();
+    validators[form.name] = new FormValidator(validationSettings, form)
 });
 
 formCreateCard.addEventListener('submit', (formCreateCard) => {
     formCreateCard.preventDefault();
-        const cardData = {title: cardTitle.value, link: cardImageLink.value};
-        const card = new Card(cardData, '.template', handleCardClick);
-        const createdCard = card._createCard();
-        addCardToHtml(createdCard);
-        formCreateCard.target.reset();
-        closePopup(popupAddCard);
-});
-
-profileAddCardButton.addEventListener('click', () => {
-    openPopup(popupAddCard);
-    const formValidator = new FormValidator(validationSettings, formCreateCard);
-    formValidator.disableSubmitButton();
+    const cardData = {title: cardTitle.value, link: cardImageLink.value};
+    renderCard(cardData, cardList)
+    formCreateCard.target.reset();
+    closePopup(popupAddCard);
 });
 
 formEditProfileInfo.addEventListener('submit', (formEditProfileInfo) => {
@@ -51,11 +51,14 @@ formEditProfileInfo.addEventListener('submit', (formEditProfileInfo) => {
         closePopup(popupEditProfile);
 });
 
+profileAddCardButton.addEventListener('click', () => {
+    openPopup(popupAddCard);
+    validators[formCreateCard.name].disableSubmitButton();
+});
+
 profileInfoEditButton.addEventListener('click', () => {
     openPopup(popupEditProfile);
     profileName.value = popupEditProfileFormName.textContent;
     profileJob.value = popupEditProfileFormJob.textContent;
-    const formValidator = new FormValidator(validationSettings, formEditProfileInfo);
-    formValidator.disableSubmitButton();
+    validators[formCreateCard.name].disableSubmitButton();
 });
-
