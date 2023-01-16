@@ -1,9 +1,9 @@
-import batiskaf from '../images/batiskaf-kusto.jpg';
-import komandaKusto from '../images/komanda-kusto.jpg';
-import akvalang from '../images/akvalang.jpg';
-import kusto from '../images/kusto.jpg';
-import underwaterHouse from '../images/underwater-house.jpg';
-import uboat from '../images/uboat.jpg';
+import batiskaf from '../../src/images/batiskaf-kusto.jpg';
+import komandaKusto from '../../src/images/komanda-kusto.jpg';
+import akvalang from '../../src/images/akvalang.jpg';
+import kusto from '../../src/images/kusto.jpg';
+import underwaterHouse from '../../src/images/underwater-house.jpg';
+import uboat from '../../src/images/uboat.jpg';
 
 
 export const defaultCards = [
