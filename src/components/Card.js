@@ -29,11 +29,12 @@ export default class Card {
     }
 
     _likeCard() {
-        this._cardsLikeButton.classList.toggle('cards__like-button_active')
+        this._cardsLikeButton.classList.toggle('cards__like-button_active');
     }
 
     _delCard() {
-        this._element.remove()
+        this._element.remove();
+        this._element = null;
     }
 
     _setEventListeners() {
