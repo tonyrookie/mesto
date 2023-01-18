@@ -6,6 +6,8 @@ import {
     forms, 
     inputProfileName,
     inputProfileJob,
+    userNameSelector,
+    userJobSelector,
 } from '../../src/utils/elements.js'
 import { defaultCards, validationSettings } from '../../src/utils/const.js'
 import Card from '../../src/components/Card.js';
@@ -17,16 +19,14 @@ import UserInfo from '../../src/components/UserInfo.js';
 import '../../src/pages/index.css'
 
 function createCard(data, templateSelector) {
-    const card = new Card(data, templateSelector, handleCardClick);
+    const card = (new Card(data, templateSelector, handleCardClick)).getView();
     return card;
 }
 function renderCards(cardsData) {
     const section = new Section({
         items: cardsData,
         renderer: (item) => {
-            const card = createCard(item, '.template');
-            const cardItem = card.getView();
-            section.addItem(cardItem);
+            section.addItem(createCard(item, '.template'));
         },
     }, '.cards');
     section.renderItems();
@@ -34,10 +34,12 @@ function renderCards(cardsData) {
 
 renderCards(defaultCards);
 
+const popupImage = new PopupWithImage('.popup_type_show-image');
+
+popupImage.setEventListeners();
+
 function handleCardClick(title, link) {
-    const popupImage = new PopupWithImage('.popup_type_show-image');
     popupImage.open(title, link);
-    popupImage.setEventListeners();
 };
 
 const validators = {};
@@ -53,7 +55,6 @@ const addCardSubmitForm = new PopupWithForm({
     handleFormSubmit: (data) => {
         renderCards([{title: data.title, link: data.link}]);
     }
-    
 });
 
 addCardSubmitForm.setEventListeners();
@@ -63,7 +64,7 @@ profileAddCardButton.addEventListener('click', () => {
     validators[formCreateCard.name].disableSubmitButton();
 });
 
-const userInfo = new UserInfo('.profile__name', '.profile__job');
+const userInfo = new UserInfo({userNameSelector, userJobSelector});
 
 const editProfileSubmitForm = new PopupWithForm({
     popupSelector: '.popup_type_edit-profile',
@@ -76,6 +77,8 @@ editProfileSubmitForm.setEventListeners();
 
 profileEditButton.addEventListener('click', () => {
     editProfileSubmitForm.open();
-    userInfo.getUserInfo(inputProfileName, inputProfileJob);
+    const userData = userInfo.getUserInfo();
+    inputProfileName.value = userData.name;
+    inputProfileJob.value = userData.job;
     validators[formEditProfileInfo.name].disableSubmitButton();
 });

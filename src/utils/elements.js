@@ -5,3 +5,5 @@ export const formCreateCard = document.forms.createCard;
 export const formEditProfileInfo = document.forms.profileInfo;
 export const profileAddCardButton = document.querySelector('.profile__add-card-button');
 export const forms = document.querySelectorAll('.popup__form');
+export const userNameSelector = '.profile__name';
+export const userJobSelector = '.profile__job';
