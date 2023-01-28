@@ -1,4 +1,4 @@
-.cards__del-button {
+.cards__del-button_active {
     position: absolute;
     width: 18px;
     height: 19px;
@@ -6,7 +6,7 @@
     top: 20px;
     opacity: 1;
     transition: opacity .2s linear;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .cards__del-button:hover {

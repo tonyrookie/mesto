@@ -8,6 +8,7 @@ export default class FormValidator {
         this._form = form;
         this._inputList = Array.from(this._form.querySelectorAll(this._input));
         this._submitButton = this._form.querySelector(this._submitButtonSelector);
+        this._submitButtonDefaultTextContent = this._submitButton.textContent;
     }
 
     _showInputError(inputElement) {
@@ -69,4 +70,12 @@ export default class FormValidator {
         this._submitButton.classList.add(this._inactiveButtonClass);
         this._submitButton.disabled = true;
     };
+
+    setButtonText(onLoad, status) {
+        if(onLoad) {
+            this._submitButton.textContent = status;
+        } else {
+            this._submitButton.textContent = this._submitButtonDefaultTextContent;
+        }
+    }
 }
