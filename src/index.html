@@ -14,10 +14,10 @@
 
     <main>
         <section class="profile">
-            <div class="profile__avatar-box"><img src="" alt="Аватарка" class="profile__avatar"></div>
+            <div class="profile__avatar-box"><img src="#" alt="Аватарка" class="profile__avatar"></div>
             <div class="profile__info">
-                <h1 class="profile__name"></h1>
-                <p class="profile__job"></p>
+                <h1 class="profile__name">#</h1>
+                <p class="profile__job">#</p>
                 <button aria-label="Кнопка 'Редактировать'" class="profile__edit-button"  type="button"></button>
             </div>
             <button aria-label="Кнопка 'Добавить'" class="profile__add-card-button" type="button"></button>
@@ -35,8 +35,8 @@
                 <button  aria-label="Кнопка 'Закрыть'" type="button" class="popup__close-button"></button>
                 <h2 class="popup__title">Обновить аватар</h2>
                 <form class="popup__form popup__form_type_change-avatar" name="changeAvatar" novalidate>
-                    <input class="popup__input popup__input_type_link-avatar" name="avatar" id="link" type="url" placeholder="Ссылка на аватар" required>
-                    <span class="popup__eror" id="link-error"></span>
+                    <input class="popup__input popup__input_type_link-avatar" name="avatar" id="avatarLink" type="url" placeholder="Ссылка на аватар" required>
+                    <span class="popup__eror" id="avatarLink-error"></span>
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
             </div>
