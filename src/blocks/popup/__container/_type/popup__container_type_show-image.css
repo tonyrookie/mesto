@@ -4,6 +4,7 @@
     border-radius: none;
     background: transparent;
     padding: 0;
+    width: auto;
 }
 
 /*@media screen and (max-width: 600px) {
