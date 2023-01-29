@@ -10,7 +10,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleCardLike = handleCardLike;
     this._handleCardDel = handleCardDel;
-    this.likeStatus = this._likes.some((like) => like._id ===  this._myOwnId);
+    this.likeStatus = false;
     };
 
     _getTemplate() {
@@ -39,31 +39,33 @@ export default class Card {
         return this._element;
     };
 
+    _checkLikeStatus() {
+        if (this._likes.some((like) => like._id === this._myOwnId)) {
+            return true
+        }
+    }
+
     _addMyLike() {
-        if (this.likeStatus) {
+        if (this._checkLikeStatus()) {
             this._cardsLikeButton.classList.add('cards__like-button_active');
+            this.likeStatus = true;
         };
     };
-
-    // likeStatus() {
-    //     if (this._likes.some((like) => like._id ===  this._myOwnId)) {
-    //         return true;
-    //     };
-    // };
 
     likeCard(likes) {
         this._cardsLikeButton.classList.add('cards__like-button_active');
         this._cardsLikes.textContent = likes;
-        this._checkRes
+        this.likeStatus = true;
     };
 
     unlikeCard(likes) {
         this._cardsLikeButton.classList.remove('cards__like-button_active');
         this._cardsLikes.textContent = likes;
+        this.likeStatus = false;
     };
 
     _addDelButton() {
-        if (this._ownerId ===  this._myOwnId) {
+        if (this._ownerId === this._myOwnId) {
             this._cardsDelButton.classList.add('cards__del-button_active');
         };
     };

@@ -176,6 +176,7 @@ function handleCardLike(card) {
         api.unlikeCard(card.cardId)
             .then((res) => {
                 card.unlikeCard(res.likes.length);
+                //card.likeStatus = true;
             })
             .catch((err) => {
                 console.log(err);
@@ -184,6 +185,7 @@ function handleCardLike(card) {
         api.likeCard(card.cardId)
             .then((res) => {
                 card.likeCard(res.likes.length);
+                //card.likeStatus = false;
             })
             .catch((err) => {
                 console.log(err);
