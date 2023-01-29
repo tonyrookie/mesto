@@ -4,17 +4,20 @@ export default class Api {
         this._headers = options.headers;
     };
 
+    _checkRes(res) {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+    
+
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     postCard({name, link}) {
@@ -26,12 +29,7 @@ export default class Api {
                 link: link,
             }),
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     likeCard(id) {
@@ -39,12 +37,7 @@ export default class Api {
             method: "PUT",
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     unlikeCard(id) {
@@ -52,12 +45,7 @@ export default class Api {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     delCard(id) {
@@ -65,15 +53,10 @@ export default class Api {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
-    patchUserAvatar(avatar) {
+    patchUserAvatar({avatar}) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
@@ -81,12 +64,7 @@ export default class Api {
                 avatar: avatar
             })
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     patchUserInfo(data) {
@@ -98,12 +76,7 @@ export default class Api {
                 about: data.about
             })
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
     getUserInfo() {
@@ -111,12 +84,7 @@ export default class Api {
             method: 'GET',
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        });
+        .then(this._checkRes);
     };
 
 
