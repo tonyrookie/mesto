@@ -33,7 +33,8 @@ class PopupWithForm extends Popup {
     setSubmitButtonText(onSaving) {
         if (onSaving) {
             this._submitButton.textContent = 'Сохранение...';
-        } else {
+        } 
+        else {
             this._submitButton.textContent = this._submitButtonDefaulttext;
         }
     };

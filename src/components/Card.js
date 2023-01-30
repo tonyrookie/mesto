@@ -43,7 +43,7 @@ export default class Card {
         if (this._likes.some((like) => like._id === this._myOwnId)) {
             return true
         }
-    }
+    };
 
     _addMyLike() {
         if (this._checkLikeStatus()) {
@@ -80,7 +80,7 @@ export default class Card {
             this._handleCardClick(this._name, this._link);
         });
         this._cardsLikeButton.addEventListener('click', () => {
-                this._handleCardLike(this);
+            this._handleCardLike(this);
         });
         this._cardsDelButton.addEventListener('click', () => {
             this._handleCardDel(this);

@@ -46,14 +46,15 @@ Promise.all([me, cards])
 
 //validation
 
-const formCreateCardValidation = new FormValidator(validationSettings, formCreateCard);
-formCreateCardValidation.enableValidation();
-
 const formEditProfileInfoValidation = new FormValidator(validationSettings, formEditProfileInfo);
 formEditProfileInfoValidation.enableValidation();
 
 const formChangeProfileAvatarValidation = new FormValidator(validationSettings, formChangeProfileAvatar);
 formChangeProfileAvatarValidation.enableValidation();
+
+const formCreateCardValidation = new FormValidator(validationSettings, formCreateCard);
+formCreateCardValidation.enableValidation();
+
 
 //set user info
 //name and about
@@ -81,10 +82,13 @@ function handleFormEditProfileSubmit(data) {
         .catch((err) => {
             console.log(err);
         })
-        .finally(popupWithFormEditProfile.setSubmitButtonText(false));
+        .finally(() => {
+            popupWithFormEditProfile.setSubmitButtonText(false)
+        });
 };
 
 profileEditButton.addEventListener('click', () => {
+    formEditProfileInfoValidation.disableSubmitButton();
     popupWithFormEditProfile.open();
     const userData = userInfo.getUserInfo();
     inputProfileName.value = userData.name;
@@ -111,10 +115,13 @@ function handleFormChangeAvatarSubmit(avatar) {
         .catch((err) => {
             console.log(err);
         })
-        .finally(popupWithFormChangeAvatar.setSubmitButtonText(false));
+        .finally(() => {
+            popupWithFormChangeAvatar.setSubmitButtonText(false);
+        });
 };
 
 userAvatar.addEventListener('click', () => {
+    formChangeProfileAvatarValidation.disableSubmitButton();
     popupWithFormChangeAvatar.open();
 });
 
@@ -137,10 +144,13 @@ function handleFormAddCardSubmit(data) {
         .catch((err) => {
             console.log(err);
         })
-        .finally(popupWithFormAddCard.setSubmitButtonText(false));
+        .finally(() => {
+            popupWithFormAddCard.setSubmitButtonText(false)
+        });
 };
 
 profileAddCardButton.addEventListener('click', () => {
+    formCreateCardValidation.disableSubmitButton();
     popupWithFormAddCard.open();
 });
 
@@ -171,7 +181,6 @@ function handleCardLike(card) {
         api.unlikeCard(card.cardId)
             .then((res) => {
                 card.unlikeCard(res.likes.length);
-                //card.likeStatus = true;
             })
             .catch((err) => {
                 console.log(err);
@@ -180,7 +189,6 @@ function handleCardLike(card) {
         api.likeCard(card.cardId)
             .then((res) => {
                 card.likeCard(res.likes.length);
-                //card.likeStatus = false;
             })
             .catch((err) => {
                 console.log(err);
@@ -200,12 +208,14 @@ function handleFormDelCardSubmit(card) {
     api.delCard(card.cardId)
         .then(
             card.delCard(),
-            popupWithConfirm.close()
+            popupWithConfirm.close(),
         )
         .catch((err) => {
             console.log(err);
         })
-        .finally(popupWithConfirm.setSubmitButtonText(false));
+        .finally(() => {
+            popupWithConfirm.setSubmitButtonText(false)
+        });
 };
 
 function handleCardDel(card) {

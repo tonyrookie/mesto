@@ -45,7 +45,6 @@ export default class FormValidator {
 
     enableValidation() {
         this._setEventListeners();
-        this.disableSubmitButton();
     };
 
     _hasInvalidInput() {

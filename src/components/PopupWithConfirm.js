@@ -21,14 +21,11 @@ class PopupWithConfirm extends Popup {
         super.setEventListeners();
     };
 
-    close() {
-        super.close();
-    };
-
     setSubmitButtonText(onDeleting) {
         if (onDeleting) {
             this._submitButton.textContent = 'Удаление...';
-        } else {
+        } 
+        else {
             this._submitButton.textContent = this._submitButtonDefaulttext;
         }
     };
