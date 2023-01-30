@@ -47,8 +47,13 @@ Promise.all([me, cards])
 //validation
 
 const formCreateCardValidation = new FormValidator(validationSettings, formCreateCard);
+formCreateCardValidation.enableValidation();
+
 const formEditProfileInfoValidation = new FormValidator(validationSettings, formEditProfileInfo);
+formEditProfileInfoValidation.enableValidation();
+
 const formChangeProfileAvatarValidation = new FormValidator(validationSettings, formChangeProfileAvatar);
+formChangeProfileAvatarValidation.enableValidation();
 
 //set user info
 //name and about
@@ -81,7 +86,6 @@ function handleFormEditProfileSubmit(data) {
 
 profileEditButton.addEventListener('click', () => {
     popupWithFormEditProfile.open();
-    formEditProfileInfoValidation.enableValidation();
     const userData = userInfo.getUserInfo();
     inputProfileName.value = userData.name;
     inputProfileAbout.value = userData.about;
@@ -112,14 +116,6 @@ function handleFormChangeAvatarSubmit(avatar) {
 
 userAvatar.addEventListener('click', () => {
     popupWithFormChangeAvatar.open();
-    formChangeProfileAvatarValidation.enableValidation();
-    api.getUserInfo()
-        .then((me) => {
-            inputProfileAvatarLink.value = me.avatar;
-        })
-        .catch((err) => {
-            console.log(err);
-        })
 });
 
 //add and render a new card
@@ -146,7 +142,6 @@ function handleFormAddCardSubmit(data) {
 
 profileAddCardButton.addEventListener('click', () => {
     popupWithFormAddCard.open();
-    formCreateCardValidation.enableValidation();
 });
 
 //popup with image

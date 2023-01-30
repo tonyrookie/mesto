@@ -9,10 +9,6 @@ class PopupWithForm extends Popup {
     this._submitButtonDefaulttext = this._submitButton.textContent;
     };
 
-    open() {
-        super.open();
-    };
-
     _getInputValues() {
         this._inputValues = {};
         this._inputList.forEach((input) => { 
